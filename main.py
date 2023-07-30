@@ -12,7 +12,7 @@ HP_ROOT_PATH = os.path.dirname(__file__)
 hp = Hparam(HP_ROOT_PATH)
 pp = pprint.PrettyPrinter(indent=4, width=1000)
 # set the wandb project where this run will be logged
-os.environ["WANDB_PROJECT"]="tabby-homework"
+os.environ["WANDB_PROJECT"]="tabbyML-homework"
 
 # save your trained model checkpoint to wandb
 os.environ["WANDB_LOG_MODEL"]="true"
@@ -34,7 +34,7 @@ def finetune(hparam = 'finetune.yaml', **kwargs):
                                 base_model_version= hp.base_model_version)
 
 
-    dataloader.preprocess(model.tokenizer)
+    dataloader.preprocess(model.tokenizer, hp.seq_max_length)
 
 
     model.train(dataloader.train_eval_dataset, hp)

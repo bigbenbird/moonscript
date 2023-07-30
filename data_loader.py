@@ -13,10 +13,10 @@ class DataLoader:
             self.dataset = data
     
 
-    def preprocess(self, tokenizer):
+    def preprocess(self, tokenizer, seq_max_length):
         def tokenize_and_split(sample):
             return tokenizer(sample['content'], 
-                             max_length=1024,
+                             max_length=seq_max_length,
                              return_overflowing_tokens=True)
 
         tokenized_dataset = self.dataset.map(tokenize_and_split, batched = True, remove_columns=self.dataset.column_names)

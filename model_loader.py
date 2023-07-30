@@ -49,6 +49,7 @@ class NeoXLoraModelLoader:
                 gradient_accumulation_steps= hp.gradient_accumulation_steps,
                 eval_steps= hp.eval_steps,
                 report_to="wandb",
+                evaluation_strategy='steps',
                 warmup_steps= hp.warmup_steps,
                 max_steps= hp.max_steps,
                 learning_rate= hp.learning_rate,
@@ -61,6 +62,7 @@ class NeoXLoraModelLoader:
 
         self.model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
         result = self.trainer.train()
+        return result
     
     def save(self, lora_save_path):
         model_to_save = self.trainer.model.module if hasattr(self.trainer.model, 'module') else self.trainer.model  # Take care of distributed/parallel training

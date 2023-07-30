@@ -1,6 +1,7 @@
 base_model: "EleutherAI/pythia-70m-deduped"
 base_model_version : "step100000"
 lora_save_path: "outputs"
+seq_max_length: 1024
 
 
 dataset_name: "bigcode/the-stack"
