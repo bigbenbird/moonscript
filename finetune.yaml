@@ -1,0 +1,18 @@
+base_model: "EleutherAI/pythia-70m-deduped"
+base_model_version : "step100000"
+lora_save_path: "outputs"
+
+
+dataset_name: "bigcode/the-stack"
+huggingface_data_dir: "data/moonscript"
+huggingface_split_name: "train"
+data_save_dir: "moonscript"
+
+per_device_train_batch_size: 8
+gradient_accumulation_steps: 8
+eval_steps: 10
+max_steps: 1000
+learning_rate: 0.0001 
+logging_steps: 1
+opt_method: "paged_adamw_32bit"
+warmup_steps: 2
